@@ -18,7 +18,9 @@ def make_api_request(endpoint):
     except requests.exceptions.RequestException as err:
         raise CanvasAPIError(f"Request error occurred: {err}")
 
+
 def get_assignments(course_id):
+    """Get assignments for a course, including its name, total points, due date and description."""
     assignments = make_api_request(f"api/v1/courses/{course_id}/assignments")
     return [
         {
@@ -27,5 +29,10 @@ def get_assignments(course_id):
             'due_date': assignments.get('due_at'),
             'description': assignments.get('description', ''),
         }
-        for assignment in assignments
+        for _ in assignments
     ]
+
+
+def get_course_code(course_id):
+    course_data = make_api_request(f"/courses/{course_id}")
+    return course_data.get("course_code", "Unknown")
