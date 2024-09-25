@@ -30,6 +30,16 @@ def index():
 def sync_assignments():
     course_id = request.form.get('course_id')
 
+    assignments = get_assignments(course_id)
+
+    for assignment in assignments:
+        assignment_name = assignment['name']
+        points_possible = assignment['points_possible']
+        print(f"Syncing assignment: {assignment_name} with points possible: {points_possible}")
+
+
+
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
