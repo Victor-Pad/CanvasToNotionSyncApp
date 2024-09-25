@@ -20,17 +20,8 @@ def make_api_request(endpoint):
 
 
 def get_assignments(course_id):
-    """Get assignments for a course, including its name, total points, due date and description."""
-    assignments = make_api_request(f"api/v1/courses/{course_id}/assignments")
-    return [
-        {
-            'name': assignments['name'],
-            'points_possible': assignments['points_possible'],
-            'due_date': assignments.get('due_at'),
-            'description': assignments.get('description', ''),
-        }
-        for _ in assignments
-    ]
+    """Get assignments for a course"""
+    return make_api_request(f"/courses/{course_id}/assignments")
 
 
 def get_course_code(course_id):

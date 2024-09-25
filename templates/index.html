@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sync Canvas to Notion</title>
 </head>
 <body>
-
+  <h1>Sync Canvas Assignments to Notion</h1>
+        <form action="/sync" method="POST">
+            <label for="course_id">Canvas Course ID:</label>
+            <input type="text" id="course_id" name="course_id" required placeholder="Enter Canvas Course ID">
+            <button type="submit">Sync Assignments</button>
+        </form>
 </body>
 </html>

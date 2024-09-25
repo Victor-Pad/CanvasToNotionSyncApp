@@ -35,8 +35,7 @@ def sync_assignments():
     for assignment in assignments:
         assignment_name = assignment['name']
         points_possible = assignment['points_possible']
-        print(f"Syncing assignment: {assignment_name} with points possible: {points_possible}")
-
+        print(f"Syncing assignment: {assignment_name} with points possible: {points_possible}") #
 
 
     return redirect(url_for('index'))
