@@ -2,8 +2,10 @@ from flask import Flask, render_template, redirect, url_for
 import os
 
 
-
 def load_env_file():
+    """
+    Loads enviroment variable from an .env file.
+    """
     if os.path.exists('.env'):
         with open('.env') as f:
             for line in f:
@@ -11,11 +13,13 @@ def load_env_file():
                     key, value = line.strip().split('=', 1)
                     os.environ[key] = value
 
-# Load the .env file
+
 load_env_file()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
+
+
 @app.route('/')
 def hello_world():  # put application's code here
     return 'Hello World!'
