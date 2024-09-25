@@ -6,7 +6,7 @@ class CanvasAPIError(Exception):
     """Exception raised for errors in the Canvas' API call"""
     pass
 
-def make_api_requests(endpoint):
+def make_api_request(endpoint):
     url = f"{CANVAS_API_URL}{endpoint}"
     headers = {"Authorization": f"Bearer {CANVAS_API_TOKEN}"}
 
@@ -17,3 +17,15 @@ def make_api_requests(endpoint):
 
     except requests.exceptions.RequestException as err:
         raise CanvasAPIError(f"Request error occurred: {err}")
+
+def get_assignments(course_id):
+    assignments = make_api_request(f"api/v1/courses/{course_id}/assignments")
+    return [
+        {
+            'name': assignments['name'],
+            'points_possible': assignments['points_possible'],
+            'due_date': assignments.get('due_at'),
+            'description': assignments.get('description', ''),
+        }
+        for assignment in assignments
+    ]
