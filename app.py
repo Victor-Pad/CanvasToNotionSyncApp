@@ -21,8 +21,8 @@ app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+def index():
+    return render_template("index.html")
 
 
 if __name__ == '__main__':
