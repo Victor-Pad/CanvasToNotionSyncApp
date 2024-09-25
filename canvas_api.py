@@ -34,5 +34,6 @@ def get_assignments(course_id):
 
 
 def get_course_code(course_id):
+    """Get the course code for a course."""
     course_data = make_api_request(f"/courses/{course_id}")
     return course_data.get("course_code", "Unknown")
